@@ -1,3 +1,4 @@
 geckodriver.log
 db.sqlite3
-__pycache__/
+__pycache__
+suplerlists/lists/__pycache__/tests.cpython-39.pyc
