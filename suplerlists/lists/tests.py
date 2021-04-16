@@ -5,20 +5,29 @@ from django.http import HttpRequest
 
 from lists.views import home_page
 
+
 class HomePageTest(TestCase):
 
-    def test_root_url_resolve_to_home_page_view(self):
-        found = resolve('/')  # 解析url的function
-        self.assertEqual(found.func, home_page)
+    def test_users_home_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'homt.html')
 
-    def test_home_page_returns_correst_html(self):
-        request = HttpRequest()
-        response = home_page(request)
-        html = response.content.decode('utf-8')
-        self.assertTrue(html.startswith('<html'))
-        self.assertIn('<title>To-Do lists</title>', html)
-        self.assertTrue(html.endswith('</html>'))
+    # def test_root_url_resolve_to_home_page_view(self):
+    #     found = resolve('/')  # 解析url的function
+    #     self.assertEqual(found.func, home_page)
 
+    # def test_home_page_returns_correst_html(self):
+    #     # request = HttpRequest()
+    #     # response = home_page(request)
+    #     response=self.client.get('/')
+    #     html = response.content.decode('utf-8')
+    #     # expected_html=render_to_string('home.html')
+    #     # self.assertEqual(html,expected_html)
+    #     self.assertTrue(html.startswith('<html'))
+    #     self.assertIn('<title>To-Do lists</title>', html)
+    #     self.assertTrue(html.endswith('</html>'))
+
+    #     self.assertTemplateUsed(response,'homt.html')
 # 用于验证该测试机制是否运行
 # class SomkeTest(TestCase):
 
