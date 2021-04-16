@@ -17,8 +17,35 @@ class NewVisitorTest(unittest.TestCase):
 
     def test_can_start_a_list_and_retrieve_it_later(self):
         self.browser.get("http://localhost:8000")
+
+        # 检测page title
         self.assertIn("To-Do", self.browser.title)
-        self.fail("Finish the test!")  # 无论如何都会产生错误信息
+
+        # 检测h1标签中是否有To-Do
+        header_text = self.browser.find_element_by_css_selector('h1').text
+        self.assertIn('To-Do', header_text)
+
+        # 检测有没有一个输入todo的输入框
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertEqual(
+            inputbox.get_attribute('palceholder'),
+            'Enter a to-do item'
+        )
+
+        # 向输入框中输入Buy peacock feathers
+        inputbox.send_keys('Buy peacock feathers')
+        inputbox.send_keys(Key.ENTER)
+        time.sleep(1)
+
+        # 检验是否插入
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_emlements_by_tag_name('tr')
+        self.assertTrue(
+            any(row.text == '1: Buy peacock feather'for row in rows)
+        )
+
+        # 无论如何都会产生错误信息
+        self.fail("Finish the test!")
 
 
 if __name__ == "__main__":
