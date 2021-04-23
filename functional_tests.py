@@ -43,9 +43,11 @@ class NewVisitorTest(unittest.TestCase):
         # 检验是否插入
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: Buy peacock feather'for row in rows)
-        )
+        # self.assertTrue(
+        #     any(row.text == '1: Buy peacock feather'for row in rows),
+        #     F'New to-do item did not appear in table. Contents were:\n{table.text}'
+        # )
+        self.assertIn('1: Buy peacock feathers',[row.text for row in rows])
 
         # 无论如何都会产生错误信息
         self.fail("Finish the test!")
