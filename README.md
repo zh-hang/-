@@ -15,3 +15,7 @@ python manager.py test
 ```shell
 python manage.py makemigrations
 ```
+数据库建立
+```shell
+python manage.py migrate --noinput
+```
