@@ -1,6 +1,6 @@
 启动服务器
 ```shell
-python ./suplerlists/manager.py runserver
+python ./suplerlists/manage.py runserver
 ```
 功能测
 ```shell
