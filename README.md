@@ -1,21 +1,23 @@
-启动服务器
+# 启动服务器
 ```shell
 python ./suplerlists/manage.py runserver
 ```
-功能测
+# 测试
+处于`suplerlists`目录下
+## 功能测
 ```shell
-python functional_tests.py
+python manage.py test functional_tests
 ```
 单元测
-处于`suplerlists`目录下
 ```shell
-python manager.py test
+python manage.py test
 ```
-数据库迁移
+# 数据库
+## 数据库迁移
 ```shell
 python manage.py makemigrations
 ```
-数据库建立
+## 数据库建立
 ```shell
 python manage.py migrate --noinput
 ```
