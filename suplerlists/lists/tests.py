@@ -24,14 +24,6 @@ class HomePageTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
 
-    def test_display_all_list_items(self):
-        Item.objects.create(text='itemey 1')
-        Item.objects.create(text='itemey 2')
-
-        response = self.client.get('/')
-
-        self.assertIn('itemey 1', response.content.decode())
-        self.assertIn('itemey 2', response.content.decode())
 
     # def test_root_url_resolve_to_home_page_view(self):
     #     found = resolve('/')  # 解析url的function
@@ -64,6 +56,11 @@ class HomePageTest(TestCase):
 
 
 class ItemModelTest(TestCase):
+
+    def test_users_list_template(self):
+        response=self.client.get('/lists/the-only-list-in-the-world/')
+        self.assertTemplateUsed(response,'list.html')
+
     def test_saving_and_retrieving_item(self):
         first_item = Item()
         first_item.text = 'The first (ever) list item'
